@@ -45,7 +45,7 @@ class DiscordRPC:
         """
         payload = json.dumps(payload)
         # frame structure shown in RpcConnection::Open(), rpc_connection.cpp, reference implementation
-        self.discordSocket.send(struct.pack("ii", opcode, len(payload)) + payload.encode("utf-8"))
+        self.discordSocket.send(struct.pack("<ii", opcode, len(payload)) + payload.encode("utf-8"))
     
     def init(self, client_id):
         """
