@@ -8,7 +8,7 @@ setup(
     long_description=open("README.md").read(),
     author="Matthew Taylor",
     author_email="mtaylor1252dev@gmail.com",
-    url="https://github.com/ymber/pylibDiscordRPC",
+    url="https://github.com/ymber/pylib_discord_rpc",
     license="MIT",
     python_requires=">=3.6"
 )
