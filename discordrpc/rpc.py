@@ -3,6 +3,7 @@ import os
 import json
 import struct
 
+
 class DiscordRPC:
     def __init__(self):
         """
@@ -22,7 +23,8 @@ class DiscordRPC:
         # can be discord-ipc-[0-9]
         for pipeNum in range(0, 10):
             try:
-                self.discordSocket.connect(f"{socketDir}/discord-ipc-{pipeNum}")
+                self.discordSocket.connect(
+                    f"{socketDir}/discord-ipc-{pipeNum}")
                 break
             except socket.error as e:
                 # throw exception if all possibilities are exhausted with no success
@@ -45,8 +47,9 @@ class DiscordRPC:
         """
         payload = json.dumps(payload)
         # frame structure shown in RpcConnection::Open(), rpc_connection.cpp, reference implementation
-        self.discordSocket.send(struct.pack("<ii", opcode, len(payload)) + payload.encode("utf-8"))
-    
+        self.discordSocket.send(
+            struct.pack("<ii", opcode, len(payload)) + payload.encode("utf-8"))
+
     def init(self, client_id):
         """
         Performs initial handshake
@@ -69,7 +72,7 @@ class DiscordRPC:
             "nonce": str(os.urandom(16))
         }
         self.write(1, payload)
-    
+
     def close(self):
         """
         Closes socket
